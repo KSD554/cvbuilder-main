@@ -4,17 +4,17 @@ import Image from 'next/image'
 import { BriefcaseBusiness, GraduationCap, Mail, MapPinCheckInside, Phone, Star } from 'lucide-react';
 
 type Props = {
-    personalDetails: PersonalDetails;
-    file: File | null;
-    theme: string;
-    experiences: Experience[];
-    educations: Education[];
-    languages: Language[];
-    skills: Skill[];
-    hobbies: Hobby[];
-    download?: boolean ;
-    ref?: unknown;
-}
+  personalDetails: PersonalDetails;
+  file: File | null;
+  theme: string;
+  experiences: Experience[];
+  educations: Education[];
+  languages: Language[];
+  skills: Skill[];
+  hobbies: Hobby[];
+  download?: boolean;
+  ref?: React.Ref<HTMLDivElement>;
+};
 
 function formatDate(dateString: string): string {
     const date = new Date(dateString);
@@ -58,7 +58,7 @@ const getStarRating = (proficiency: string) => {
 
 
 
-const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences, educations, languages, skills , hobbies , download , ref}) => {
+const CVPreview = React.forwardRef<HTMLDivElement, Props>(({ personalDetails, file, theme, experiences, educations, languages, skills, hobbies, download }, ref) => {
     return (
         <div ref={ref} className={` flex p-16 w-[950px] h-[1200px] shadow-lg ${download ? 'mb-10' : ''}`} data-theme={theme}>
 
@@ -161,14 +161,14 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
 
                     <div className='mt-6'>
                         <h1 className='uppercase font-bold my-2'>
-                        Hobies
+                            Hobies
                         </h1>
                         <div className='flex flex-col space-y-2'>
                             {hobbies.map((hobby, index) => (
                                 <div key={index}>
-                                   <span className='capitalize'>
-                                    {hobby.name}
-                                   </span>
+                                    <span className='capitalize'>
+                                        {hobby.name}
+                                    </span>
                                 </div>
                             ))}
                         </div>
@@ -279,6 +279,8 @@ const CVPreview: React.FC<Props> = ({ personalDetails, file, theme, experiences,
 
         </div>
     )
-}
+});
+
+CVPreview.displayName = 'CVPreview';
 
 export default CVPreview
