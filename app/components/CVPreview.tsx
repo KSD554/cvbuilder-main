@@ -4,17 +4,17 @@ import Image from 'next/image'
 import { BriefcaseBusiness, GraduationCap, Mail, MapPinCheckInside, Phone, Star } from 'lucide-react';
 
 type Props = {
-    personalDetails: PersonalDetails;
-    file: File | null;
-    theme: string;
-    experiences: Experience[];
-    educations: Education[];
-    languages: Language[];
-    skills: Skill[];
-    hobbies: Hobby[];
-    download?: boolean ;
-    ref?:any
-}
+  personalDetails: PersonalDetails;
+  file: File | null;
+  theme: string;
+  experiences: Experience[];
+  educations: Education[];
+  languages: Language[];
+  skills: Skill[];
+  hobbies: Hobby[];
+  download?: boolean;
+  ref?: unknown;
+};
 
 function formatDate(dateString: string): string {
     const date = new Date(dateString);
